@@ -48,8 +48,8 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(list, cb) {
-  return cb(list.length)
+function processLength(list, callback) {
+  return callback(list.length)
 }
 
 /**
@@ -66,8 +66,8 @@ function processLength(list, cb) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(stringList, cb) {
-  return cb(stringList[stringList.length-1])
+function processLastItem(stringList, callback) {
+  return callback(stringList[stringList.length-1])
 }
 
 /**
@@ -87,8 +87,8 @@ function processLastItem(stringList, cb) {
  * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
  * should return 1000.
 */
-function processSum(arr, callback){
-  var sum = arr.reduce((a,b)=> a + b, 0);
+function processSum(numberList, callback){
+  var sum = numberList.reduce((a,b)=> a + b, 0);
   return callback(sum)
 };
 
@@ -160,8 +160,14 @@ function processContains(item, list, callback) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+function processDuplicateFree(list, callback) {
+  let finalArray = [];
+  list.forEach((item) => {
+    if (!(finalArray.indexOf(item) >= 0)){
+      finalArray.push(item)
+    }
+  })
+  return callback(finalArray)
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -295,8 +301,18 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(max) {
+    let count = -1;
+    function counter(){
+      if (count < max){
+        count++;
+        return count;
+      } else {
+        count = 0;
+        return count;
+      }
+    }
+  return counter;
 }
 
 /////////////// END OF CHALLENGE ///////////////
